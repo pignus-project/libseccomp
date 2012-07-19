@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 0.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 ExclusiveArch: %{ix86} x86_64
 License: LGPLv2
 Group: System Environment/Libraries
@@ -63,6 +63,9 @@ make DESTDIR="%{buildroot}" install
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Tue Jul 10 2012 Paul Moore <pmoore@redhat.com> - 0.1.0-1
 - Limit package to x86/x86_64 platforms (RHBZ #837888)
 * Tue Jun 12 2012 Paul Moore <pmoore@redhat.com> - 0.1.0-0
