@@ -1,16 +1,13 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 0.1.0
-Release: 2%{?dist}
+Version: 1.0.0
+Release: 0%{?dist}
 ExclusiveArch: %{ix86} x86_64
 License: LGPLv2
 Group: System Environment/Libraries
 Source: http://downloads.sf.net/project/libseccomp/%{name}-%{version}.tar.gz
 URL: http://libseccomp.sourceforge.net
 Requires: kernel >= 3.5
-
-# force the build process to be as verbose as possible, nothing is hidden
-Patch1: libseccomp-0.1.0-build_verbose.patch
 
 %description
 The libseccomp library provides an easy to use interface to the Linux Kernel's
@@ -33,18 +30,17 @@ Kernel.
 
 %prep
 %setup -q
-%patch1 -p1
 
 %build
 ./configure --prefix="%{_prefix}" --libdir="%{_libdir}"
-CFLAGS="%{optflags}" make
+make V=1 %{?_smp_mflags}
 
 %install
 rm -rf "%{buildroot}"
 mkdir -p "%{buildroot}/%{_libdir}"
 mkdir -p "%{buildroot}/%{_includedir}"
 mkdir -p "%{buildroot}/%{_mandir}"
-make DESTDIR="%{buildroot}" install
+make V=1 DESTDIR="%{buildroot}" install
 
 %post -p /sbin/ldconfig
 
@@ -63,9 +59,12 @@ make DESTDIR="%{buildroot}" install
 %{_mandir}/man3/*
 
 %changelog
+* Tue Jul 31 2012 Paul Moore <pmoore@redhat.com> - 1.0.0-0
+- New upstream version
+- Remove verbose build patch as it is no longer needed
+- Enable _smp_mflags during build stage
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
-
 * Tue Jul 10 2012 Paul Moore <pmoore@redhat.com> - 0.1.0-1
 - Limit package to x86/x86_64 platforms (RHBZ #837888)
 * Tue Jun 12 2012 Paul Moore <pmoore@redhat.com> - 0.1.0-0
