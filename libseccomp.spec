@@ -1,6 +1,6 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 1.0.1
+Version: 2.0.0
 Release: 0%{?dist}
 ExclusiveArch: %{ix86} x86_64
 License: LGPLv2
@@ -59,6 +59,8 @@ make V=1 DESTDIR="%{buildroot}" install
 %{_mandir}/man3/*
 
 %changelog
+* Mon Jan 28 2013 Paul Moore <pmoore@redhat.com> - 2.0.0-0
+- New upstream version
 * Tue Nov 13 2012 Paul Moore <pmoore@redhat.com> - 1.0.1-0
 - New upstream version with several important fixes
 * Tue Jul 31 2012 Paul Moore <pmoore@redhat.com> - 1.0.0-0
