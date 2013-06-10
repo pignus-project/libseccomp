@@ -1,13 +1,18 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 2.0.0
+Version: 2.1.0
 Release: 0%{?dist}
-ExclusiveArch: %{ix86} x86_64
+ExclusiveArch: %{ix86} x86_64 %{arm}
 License: LGPLv2
 Group: System Environment/Libraries
 Source: http://downloads.sf.net/project/libseccomp/%{name}-%{version}.tar.gz
 URL: http://libseccomp.sourceforge.net
+%ifarch %{ix86} x86_64
 Requires: kernel >= 3.5
+%endif
+%ifarch %{arm}
+Requires: kernel >= 3.8
+%endif
 
 %description
 The libseccomp library provides an easy to use interface to the Linux Kernel's
@@ -56,9 +61,15 @@ make V=1 DESTDIR="%{buildroot}" install
 %{_includedir}/seccomp.h
 %{_libdir}/libseccomp.so
 %{_libdir}/pkgconfig/libseccomp.pc
+%{_bindir}/scmp_sys_resolver
+%{_mandir}/man1/*
 %{_mandir}/man3/*
 
 %changelog
+* Tue Jun 11 2013 Paul Moore <pmoore@redhat.com> - 2.1.0-0
+- New upstream version
+- Added support for the ARM architecture
+- Added the scmp_sys_resolver tool
 * Mon Jan 28 2013 Paul Moore <pmoore@redhat.com> - 2.0.0-0
 - New upstream version
 * Tue Nov 13 2012 Paul Moore <pmoore@redhat.com> - 1.0.1-0
