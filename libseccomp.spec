@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.1.0
-Release: 0%{?dist}
+Release: 1%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm}
 License: LGPLv2
 Group: System Environment/Libraries
@@ -66,6 +66,9 @@ make V=1 DESTDIR="%{buildroot}" install
 %{_mandir}/man3/*
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.0-1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Tue Jun 11 2013 Paul Moore <pmoore@redhat.com> - 2.1.0-0
 - New upstream version
 - Added support for the ARM architecture
