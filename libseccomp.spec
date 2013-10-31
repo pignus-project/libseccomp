@@ -1,12 +1,13 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 2.1.0
-Release: 1%{?dist}
+Version: 2.1.1
+Release: 0%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm}
 License: LGPLv2
 Group: System Environment/Libraries
 Source: http://downloads.sf.net/project/libseccomp/%{name}-%{version}.tar.gz
 URL: http://libseccomp.sourceforge.net
+BuildRequires: valgrind
 %ifarch %{ix86} x86_64
 Requires: kernel >= 3.5
 %endif
@@ -47,6 +48,9 @@ mkdir -p "%{buildroot}/%{_includedir}"
 mkdir -p "%{buildroot}/%{_mandir}"
 make V=1 DESTDIR="%{buildroot}" install
 
+%check
+make check
+
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
@@ -66,6 +70,10 @@ make V=1 DESTDIR="%{buildroot}" install
 %{_mandir}/man3/*
 
 %changelog
+* Thu Oct 31 2013 Paul Moore <pmoore@redhat.com> - 2.1.1-0
+- New upstream version
+- Added a %check procedure for self-test during build
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.0-1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
