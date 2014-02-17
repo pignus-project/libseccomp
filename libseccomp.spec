@@ -1,19 +1,13 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.1.1
-Release: 0%{?dist}
+Release: 1%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm}
 License: LGPLv2
 Group: System Environment/Libraries
 Source: http://downloads.sf.net/project/libseccomp/%{name}-%{version}.tar.gz
 URL: http://libseccomp.sourceforge.net
 BuildRequires: valgrind
-%ifarch %{ix86} x86_64
-Requires: kernel >= 3.5
-%endif
-%ifarch %{arm}
-Requires: kernel >= 3.8
-%endif
 
 %description
 The libseccomp library provides an easy to use interface to the Linux Kernel's
@@ -70,6 +64,8 @@ make check
 %{_mandir}/man3/*
 
 %changelog
+* Mon Feb 17 2014 Paul Moore <pmoore@redhat.com> - 2.1.1-1
+- Removed the kernel dependency (RHBZ #1065572)
 * Thu Oct 31 2013 Paul Moore <pmoore@redhat.com> - 2.1.1-0
 - New upstream version
 - Added a %check procedure for self-test during build
