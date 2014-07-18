@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.1.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm}
 License: LGPLv2
 Group: System Environment/Libraries
@@ -50,7 +50,8 @@ make check
 %postun -p /sbin/ldconfig
 
 %files
-%doc LICENSE
+%{!?_licensedir:%global license %%doc}
+%license LICENSE
 %doc CREDITS
 %doc README
 %{_libdir}/libseccomp.so.*
@@ -64,6 +65,9 @@ make check
 %{_mandir}/man3/*
 
 %changelog
+* Fri Jul 18 2014 Tom Callaway <spot@fedoraproject.org> - 2.1.1-4
+- fix license handling
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
