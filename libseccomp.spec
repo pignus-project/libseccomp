@@ -65,7 +65,7 @@ make check
 %{_mandir}/man3/*
 
 %changelog
-* Thu Sep 18 Paul Moore <pmoore@redhat.com> - 2.1.1-6
+* Thu Sep 18 2014 Paul Moore <pmoore@redhat.com> - 2.1.1-6
 - Fully builds on i686, x86_64, and armv7hl (RHBZ #1106071)
 
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.1-5
