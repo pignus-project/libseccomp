@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.1.1
-Release: 5%{?dist}
+Release: 6%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm}
 License: LGPLv2
 Group: System Environment/Libraries
@@ -43,10 +43,7 @@ mkdir -p "%{buildroot}/%{_mandir}"
 make V=1 DESTDIR="%{buildroot}" install
 
 %check
-# Arm fails several tests here, could be legit, but we need to build on other arches.
-%ifnarch %{arm}
 make check
-%endif
 
 %post -p /sbin/ldconfig
 
@@ -68,6 +65,9 @@ make check
 %{_mandir}/man3/*
 
 %changelog
+* Thu Sep 18 Paul Moore <pmoore@redhat.com> - 2.1.1-6
+- Fully builds on i686, x86_64, and armv7hl (RHBZ #1106071)
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.1-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
