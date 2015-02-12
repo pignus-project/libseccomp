@@ -1,12 +1,12 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 2.1.1
-Release: 6%{?dist}
-ExclusiveArch: %{ix86} x86_64 %{arm}
+Version: 2.2.0
+Release: 0%{?dist}
+ExclusiveArch: %{ix86} x86_64 %{arm} aarch64
 License: LGPLv2
 Group: System Environment/Libraries
-Source: http://downloads.sf.net/project/libseccomp/%{name}-%{version}.tar.gz
-URL: http://libseccomp.sourceforge.net
+Source: https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
+URL: https://github.com/seccomp/libseccomp
 BuildRequires: valgrind
 
 %description
@@ -28,12 +28,24 @@ to specify which syscalls, and optionally which syscall arguments, the
 application is allowed to execute, all of which are enforced by the Linux
 Kernel.
 
+%package static
+Summary: Enhanced seccomp static library
+Group: Development/Libraries
+Requires: %{name}-devel%{?_isa} = %{version}-%{release} pkgconfig
+
+%description static
+The libseccomp library provides an easy to use interface to the Linux Kernel's
+syscall filtering mechanism, seccomp.  The libseccomp API allows an application
+to specify which syscalls, and optionally which syscall arguments, the
+application is allowed to execute, all of which are enforced by the Linux
+Kernel.
+
 %prep
 %setup -q
 
 %build
-./configure --prefix="%{_prefix}" --libdir="%{_libdir}"
-CFLAGS="%{optflags}" make V=1 %{?_smp_mflags}
+%configure
+make V=1 %{?_smp_mflags}
 
 %install
 rm -rf "%{buildroot}"
@@ -41,9 +53,10 @@ mkdir -p "%{buildroot}/%{_libdir}"
 mkdir -p "%{buildroot}/%{_includedir}"
 mkdir -p "%{buildroot}/%{_mandir}"
 make V=1 DESTDIR="%{buildroot}" install
+rm -f "%{buildroot}/%{_libdir}/libseccomp.la"
 
 %check
-make check
+make V=1 check
 
 %post -p /sbin/ldconfig
 
@@ -54,6 +67,8 @@ make check
 %license LICENSE
 %doc CREDITS
 %doc README
+%doc CHANGELOG
+%doc SUBMITTING_PATCHES
 %{_libdir}/libseccomp.so.*
 
 %files devel
@@ -64,7 +79,15 @@ make check
 %{_mandir}/man1/*
 %{_mandir}/man3/*
 
+%files static
+%{_libdir}/libseccomp.a
+
 %changelog
+* Thu Feb 12 2015 Paul Moore <pmoore@redhat.com> - 2.2.0-0
+- New upstream version
+- Added aarch64 support
+- Added a static build
+
 * Thu Sep 18 2014 Paul Moore <pmoore@redhat.com> - 2.1.1-6
 - Fully builds on i686, x86_64, and armv7hl (RHBZ #1106071)
 
