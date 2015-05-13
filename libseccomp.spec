@@ -1,6 +1,6 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 2.2.0
+Version: 2.2.1
 Release: 0%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm} aarch64
 License: LGPLv2
@@ -83,6 +83,9 @@ make V=1 check
 %{_libdir}/libseccomp.a
 
 %changelog
+* Wed May 13 2015 Paul Moore <pmoore@redhat.com> - 2.2.1-0
+- New upstream version
+
 * Thu Feb 12 2015 Paul Moore <pmoore@redhat.com> - 2.2.0-0
 - New upstream version
 - Added aarch64 support
