@@ -1,13 +1,15 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.3.0
-Release: 0%{?dist}
+Release: 1%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm} aarch64 mipsel mips64el ppc64 ppc64le s390 s390x
 License: LGPLv2
 Group: System Environment/Libraries
 Source: https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
 URL: https://github.com/seccomp/libseccomp
+%ifnarch s390
 BuildRequires: valgrind
+%endif
 
 %description
 The libseccomp library provides an easy to use interface to the Linux Kernel's
@@ -83,6 +85,9 @@ make V=1 check
 %{_libdir}/libseccomp.a
 
 %changelog
+* Tue Mar  1 2016 Peter Robinson <pbrobinson@fedoraproject.org> 2.3.0-1
+- No valgrind on s390
+
 * Mon Feb 29 2016 Paul Moore <pmoore@redhat.com> - 2.3.0
 - New upstream version
 
