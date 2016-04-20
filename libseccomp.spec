@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 2.3.0
-Release: 1%{?dist}
+Version: 2.3.1
+Release: 0%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm} aarch64 mipsel mips64el ppc64 ppc64le s390 s390x
 License: LGPLv2
 Group: System Environment/Libraries
@@ -85,10 +85,13 @@ make V=1 check
 %{_libdir}/libseccomp.a
 
 %changelog
+* Wed Apr 20 2016 Paul Moore <pmoore@redhat.com> - 2.3.1-0
+- New upstream version
+
 * Tue Mar  1 2016 Peter Robinson <pbrobinson@fedoraproject.org> 2.3.0-1
 - No valgrind on s390
 
-* Mon Feb 29 2016 Paul Moore <pmoore@redhat.com> - 2.3.0
+* Mon Feb 29 2016 Paul Moore <pmoore@redhat.com> - 2.3.0-0
 - New upstream version
 
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.3-1
