@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.3.1
-Release: 0%{?dist}
+Release: 1%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm} aarch64 mipsel mips64el ppc64 ppc64le s390 s390x
 License: LGPLv2
 Group: System Environment/Libraries
@@ -85,6 +85,9 @@ make V=1 check
 %{_libdir}/libseccomp.a
 
 %changelog
+* Wed Apr 20 2016 Paul Moore <pmoore@redhat.com> - 2.3.1-1
+- Cleanup the changelog whitespace and escape the macros to make rpmlint happy
+
 * Wed Apr 20 2016 Paul Moore <pmoore@redhat.com> - 2.3.1-0
 - New upstream version
 
@@ -125,11 +128,13 @@ make V=1 check
 
 * Thu Feb 27 2014 Paul Moore <pmoore@redhat.com> - 2.1.1-2
 - Build with CFLAGS="${optflags}"
+
 * Mon Feb 17 2014 Paul Moore <pmoore@redhat.com> - 2.1.1-1
 - Removed the kernel dependency (RHBZ #1065572)
+
 * Thu Oct 31 2013 Paul Moore <pmoore@redhat.com> - 2.1.1-0
 - New upstream version
-- Added a %check procedure for self-test during build
+- Added a %%check procedure for self-test during build
 
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.0-1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
@@ -138,18 +143,24 @@ make V=1 check
 - New upstream version
 - Added support for the ARM architecture
 - Added the scmp_sys_resolver tool
+
 * Mon Jan 28 2013 Paul Moore <pmoore@redhat.com> - 2.0.0-0
 - New upstream version
+
 * Tue Nov 13 2012 Paul Moore <pmoore@redhat.com> - 1.0.1-0
 - New upstream version with several important fixes
+
 * Tue Jul 31 2012 Paul Moore <pmoore@redhat.com> - 1.0.0-0
 - New upstream version
 - Remove verbose build patch as it is no longer needed
 - Enable _smp_mflags during build stage
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Tue Jul 10 2012 Paul Moore <pmoore@redhat.com> - 0.1.0-1
 - Limit package to x86/x86_64 platforms (RHBZ #837888)
+
 * Tue Jun 12 2012 Paul Moore <pmoore@redhat.com> - 0.1.0-0
 - Initial version
 
