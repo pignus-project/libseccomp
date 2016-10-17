@@ -7,7 +7,7 @@ License: LGPLv2
 Group: System Environment/Libraries
 Source: https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
 URL: https://github.com/seccomp/libseccomp
-%ifnarch s390
+%ifnarch riscv64 s390
 BuildRequires: valgrind
 %endif
 
