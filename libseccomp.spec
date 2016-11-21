@@ -1,13 +1,13 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
 Version: 2.3.2
-Release: 1%{?dist}
+Release: 1%{?dist}.pi1
 ExclusiveArch: %{ix86} x86_64 %{arm} aarch64 mipsel mips64el ppc64 ppc64le s390 s390x
 License: LGPLv2
 Group: System Environment/Libraries
 Source: https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
 URL: https://github.com/seccomp/libseccomp
-%ifnarch riscv64 s390
+%ifnarch riscv64 s390 armv6hl
 BuildRequires: valgrind
 %endif
 
@@ -85,6 +85,9 @@ make V=1 check
 %{_libdir}/libseccomp.a
 
 %changelog
+* Sat Apr 08 2017 Lubomir Rintel <lkundrak@v3.sk> 2.3.2-1.lr1
+- Drop valgrind BR
+
 * Wed Mar 01 2017 Paul Moore <pmoore@redhat.com> -2.3.2-1
 - New upstream version
 
