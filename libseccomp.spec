@@ -1,7 +1,7 @@
 Summary: Enhanced seccomp library
 Name: libseccomp
-Version: 2.3.1
-Release: 2%{?dist}
+Version: 2.3.2
+Release: 1%{?dist}
 ExclusiveArch: %{ix86} x86_64 %{arm} aarch64 mipsel mips64el ppc64 ppc64le s390 s390x
 License: LGPLv2
 Group: System Environment/Libraries
@@ -68,7 +68,7 @@ make V=1 check
 %{!?_licensedir:%global license %%doc}
 %license LICENSE
 %doc CREDITS
-%doc README
+%doc README.md
 %doc CHANGELOG
 %doc SUBMITTING_PATCHES
 %{_libdir}/libseccomp.so.*
@@ -85,6 +85,9 @@ make V=1 check
 %{_libdir}/libseccomp.a
 
 %changelog
+* Wed Mar 01 2017 Paul Moore <pmoore@redhat.com> -2.3.2-1
+- New upstream version
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
